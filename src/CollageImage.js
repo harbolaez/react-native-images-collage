@@ -275,8 +275,15 @@ class CollageImage extends React.Component {
         }
       },
       onPanResponderEnd: (e, gestureState) => {
+        const { dx, dy, moveX, moveY } = gestureState;
         // Focusses the image, if user just taps it, and there is no movement or holding
-        if (Math.abs(gestureState.dx) < 5 && !this.state.selected) {
+        if (
+          Math.abs(dx) < 5 &&
+          Math.abs(dy) < 5 &&
+          Math.abs(moveX) < 5 &&
+          Math.abs(moveY) < 5 &&
+          !this.state.selected
+        ) {
           if (this.props.onImageFocus) this.props.onImageFocus(e);
         }
 
